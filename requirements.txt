@@ -3,6 +3,6 @@ torchvision
 diffusers
 transformers
 accelerate
-optimum[onnxruntime]
+optimum[onnxruntime, openvino]
 onnxruntime
 onnx
