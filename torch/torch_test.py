@@ -3,7 +3,6 @@ from diffusers import DiffusionPipeline
 
 pipe = DiffusionPipeline.from_pretrained(
     "runwayml/stable-diffusion-v1-5",
-    torch_dtype=torch.float16,
 )
 pipe = pipe.to("cpu")
 
