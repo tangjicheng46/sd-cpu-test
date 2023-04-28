@@ -7,6 +7,8 @@ pipe = DiffusionPipeline.from_pretrained(
 )
 pipe = pipe.to("cpu")
 
+pipe.save_pretrained("./model1")
+
 prompt = "a photo of an astronaut riding a horse on mars"
 pipe.enable_attention_slicing()
 
