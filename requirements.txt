@@ -3,3 +3,4 @@ torchvision
 diffusers
 transformers
 accelerate
+optimum[onnxruntime]
