@@ -13,7 +13,7 @@ prompt = "a photo of an astronaut riding a horse on mars"
 pipe.enable_attention_slicing()
 
 start = time.time()
-image = pipe(prompt).images[0]
+image = pipe(prompt=prompt, num_inference_steps=20).images[0]
 end = time.time()
 print("cost: ", end - start)
 
