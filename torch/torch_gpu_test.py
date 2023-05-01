@@ -2,15 +2,17 @@ import torch
 from diffusers import DiffusionPipeline
 import time 
 
+model_path = "/home/ec2-user/SageMaker/stable-diffusion-v1-5/v1-5-pruned-emaonly.ckpt"
+
 pipe = DiffusionPipeline.from_pretrained(
-    "runwayml/stable-diffusion-v1-5",
+    model_path,
 )
 pipe = pipe.to("cuda")
 
-pipe.save_pretrained("./model1")
+# pipe.save_pretrained("./model1")
 
 prompt = "a photo of an astronaut riding a horse on mars"
-pipe.enable_attention_slicing()
+# pipe.enable_attention_slicing()
 
 torch.cuda.synchronize()
 start = time.time()

@@ -2,8 +2,9 @@ from optimum.onnxruntime import ORTStableDiffusionPipeline
 import torch 
 import time 
 
-model_id = "sd_v15_onnx"
-pipe = ORTStableDiffusionPipeline.from_pretrained(model_id)
+# model_id = "sd_v15_onnx"
+model_path = "/home/ec2-user/SageMaker/stable-diffusion-v1-5/v1-5-pruned-emaonly.ckpt"
+pipe = ORTStableDiffusionPipeline.from_pretrained(model_path)
 
 pipe.to("cuda")
 
