@@ -373,7 +373,7 @@ ov_pipe = OVStableDiffusionPipeline(
 
 text_prompt = 'cyberpunk cityscape like Tokyo New York  with tall buildings at dusk golden hour cinematic lighting, epic composition. A golden daylight, hyper-realistic environment. Hyper and intricate detail, photo-realistic. Cinematic and volumetric light. Epic concept art. Octane render and Unreal Engine, trending on artstation'
 num_steps = 20
-seed = -1
+seed = 1234
 
 start = time.time()
 
