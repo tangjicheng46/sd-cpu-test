@@ -1,6 +1,7 @@
 import inspect
 from typing import List, Optional, Union, Dict
 import numpy as np 
+import time
 
 import PIL
 import cv2
@@ -358,19 +359,29 @@ ov_pipe = OVStableDiffusionPipeline(
     scheduler=lms
 )
 
-import ipywidgets as widgets
+# import ipywidgets as widgets
 
-text_prompt = widgets.Text(value='cyberpunk cityscape like Tokyo New York  with tall buildings at dusk golden hour cinematic lighting, epic composition. A golden daylight, hyper-realistic environment. Hyper and intricate detail, photo-realistic. Cinematic and volumetric light. Epic concept art. Octane render and Unreal Engine, trending on artstation', description='your text')
-num_steps = widgets.IntSlider(min=1, max=50, value=20, description='steps:')
-seed = widgets.IntSlider(min=0, max=10000000, description='seed: ', value=42)
-widgets.VBox([text_prompt, seed, num_steps])
+# text_prompt = widgets.Text(value='cyberpunk cityscape like Tokyo New York  with tall buildings at dusk golden hour cinematic lighting, epic composition. A golden daylight, hyper-realistic environment. Hyper and intricate detail, photo-realistic. Cinematic and volumetric light. Epic concept art. Octane render and Unreal Engine, trending on artstation', description='your text')
+# num_steps = widgets.IntSlider(min=1, max=50, value=20, description='steps:')
+# seed = widgets.IntSlider(min=0, max=10000000, description='seed: ', value=42)
+# widgets.VBox([text_prompt, seed, num_steps])
 
-print('Pipeline settings')
-print(f'Input text: {text_prompt.value}')
-print(f'Seed: {seed.value}')
-print(f'Number of steps: {num_steps.value}')
+# print('Pipeline settings')
+# print(f'Input text: {text_prompt.value}')
+# print(f'Seed: {seed.value}')
+# print(f'Number of steps: {num_steps.value}')
 
-result = ov_pipe(text_prompt.value, num_inference_steps=num_steps.value, seed=seed.value)
+text_prompt = 'cyberpunk cityscape like Tokyo New York  with tall buildings at dusk golden hour cinematic lighting, epic composition. A golden daylight, hyper-realistic environment. Hyper and intricate detail, photo-realistic. Cinematic and volumetric light. Epic concept art. Octane render and Unreal Engine, trending on artstation'
+num_steps = 20
+seed = -1
+
+start = time.time()
+
+result = ov_pipe(text_prompt, num_inference_steps=num_steps, seed=seed)
+
+end = time.time()
+
+print("cost: ", end - start)
 
 final_image = result['sample'][0]
 if result['iterations']:
@@ -379,10 +390,10 @@ if result['iterations']:
     img.save(fp='result.gif', format='GIF', append_images=iter(all_frames), save_all=True, duration=len(all_frames) * 5, loop=0)
 final_image.save('result.png')
 
-import ipywidgets as widgets
+# import ipywidgets as widgets
 
-text = '\n\t'.join(text_prompt.value.split('.'))
-print("Input text:")
-print("\t" + text)
+# text = '\n\t'.join(text_prompt.value.split('.'))
+# print("Input text:")
+# print("\t" + text)
 # display(final_image)
 
