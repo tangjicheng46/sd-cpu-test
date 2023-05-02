@@ -11,6 +11,25 @@ from diffusers.schedulers import DDIMScheduler, LMSDiscreteScheduler, PNDMSchedu
 from openvino.runtime import Model
 
 
+from diffusers import StableDiffusionPipeline
+
+import gc
+from pathlib import Path
+import torch
+
+
+TEXT_ENCODER_ONNX_PATH = Path('text_encoder.onnx')
+TEXT_ENCODER_OV_PATH = TEXT_ENCODER_ONNX_PATH.with_suffix('.xml')
+
+UNET_ONNX_PATH = Path('unet/unet.onnx')
+UNET_OV_PATH = UNET_ONNX_PATH.parents[1] / 'unet.xml'
+
+VAE_ENCODER_ONNX_PATH = Path('vae_encoder.onnx')
+VAE_ENCODER_OV_PATH = VAE_ENCODER_ONNX_PATH.with_suffix('.xml')
+
+VAE_DECODER_ONNX_PATH = Path('vae_decoder.onnx')
+VAE_DECODER_OV_PATH = VAE_DECODER_ONNX_PATH.with_suffix('.xml')
+
 def scale_fit_to_window(dst_width:int, dst_height:int, image_width:int, image_height:int):
     """
     Preprocessing helper function for calculating image size for resize with peserving original aspect ratio 
