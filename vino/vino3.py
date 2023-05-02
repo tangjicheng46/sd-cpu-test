@@ -375,13 +375,17 @@ text_prompt = 'cyberpunk cityscape like Tokyo New York  with tall buildings at d
 num_steps = 20
 seed = 1234
 
-start = time.time()
+total_cost = 0.0
+total_count = 0
 
-result = ov_pipe(text_prompt, num_inference_steps=num_steps, seed=seed)
-
-end = time.time()
-
-print("cost: ", end - start)
+for i in range(10):
+    start = time.time()
+    result = ov_pipe(text_prompt, num_inference_steps=num_steps, seed=seed)
+    end = time.time()
+    print("cost: ", end - start)
+    total_cost += (end - start)
+    total_count += 1
+print("avg_cost: ", total_cost/total_count)
 
 final_image = result['sample'][0]
 if result['iterations']:
