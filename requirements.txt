@@ -1,13 +1,13 @@
 --find-links https://download.pytorch.org/whl/torch_stable.html
 torch==1.13.1+cpu
-torchvision==0.14.1
-diffusers==0.16.1
-transformers==4.25.1
-accelerate==0.12.0
-optimum==1.8.4
-optimum-intel==1.8.0
+torchvision
+diffusers
+transformers
+accelerate
+optimum
+optimum-intel
 optimum-openvino
 onnxruntime
 onnx
-openvino==2023.0.0.dev20230427
+openvino
 openvino-dev
