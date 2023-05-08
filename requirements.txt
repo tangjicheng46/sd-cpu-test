@@ -6,3 +6,4 @@ accelerate
 optimum[onnxruntime, openvino]
 onnxruntime
 onnx
+openvino-dev
