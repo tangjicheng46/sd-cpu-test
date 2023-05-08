@@ -1,9 +1,10 @@
-torch==1.13.1
+--find-links https://download.pytorch.org/whl/torch_stable.html
+torch==1.13.1+cpu
 torchvision
 diffusers
 transformers
 accelerate
-optimum[onnxruntime, openvino]
+optimum[openvino]
 onnxruntime
 onnx
 openvino-dev
