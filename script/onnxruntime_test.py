@@ -8,7 +8,7 @@ def run_onnxruntime_infer(prompt: str, is_save: bool = False):
     pipe = ORTStableDiffusionPipeline.from_pretrained(model_id)
 
     # warmup
-    images = pipe(prompt=prompt, num_inference_steps=20).images[0]
+    image = pipe(prompt=prompt, num_inference_steps=20).images[0]
 
     # run loop for performance testing
     loop = 2
