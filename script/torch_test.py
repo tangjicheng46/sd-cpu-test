@@ -5,9 +5,13 @@ import torch
 from diffusers import StableDiffusionPipeline
 
 
-def run_torch_inference(prompt: str, is_enable_slicing: bool = True, is_save: bool = False):
+def run_torch_inference(prompt: str,
+                        torch_dtype: torch.dtype,
+                        is_enable_slicing: bool = True,
+                        is_save: bool = False):
     model_id = "runwayml/stable-diffusion-v1-5"
-    pipe = StableDiffusionPipeline.from_pretrained(model_id)
+    pipe = StableDiffusionPipeline.from_pretrained(model_id,
+                                                   torch_dtype=torch_dtype)
     if is_enable_slicing:
         pipe.enable_attention_slicing()
         pipe.enable_vae_slicing()
@@ -37,7 +41,13 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(prog="Stable Diffusion Performance Test")
     parser.add_argument("--enable_slicing", default=True, type=bool)
-
+    parser.add_argument("--fp16", default=False, type=bool)
     args = parser.parse_args()
 
-    run_torch_inference(prompt=prompt, is_enable_slicing=args.enable_slicing)
+    torch_dtype = torch.float32
+    if args.fp16:
+        torch_dtype = torch.float16
+
+    run_torch_inference(prompt=prompt,
+                        torch_dtype=torch_dtype,
+                        is_enable_slicing=args.enable_slicing)
