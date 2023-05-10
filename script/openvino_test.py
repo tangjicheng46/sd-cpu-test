@@ -2,7 +2,7 @@ from optimum.intel.openvino import OVStableDiffusionPipeline
 import time
 
 model_id = "runwayml/stable-diffusion-v1-5"
-pipe = OVStableDiffusionPipeline.from_pretrained(model_id)
+pipe = OVStableDiffusionPipeline.from_pretrained(model_id, export=True)
 prompt = "a photo of an astronaut riding a horse on mars"
 
 start = time.time()
