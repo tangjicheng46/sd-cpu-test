@@ -1,14 +1,16 @@
 # cpu_test
 
-## environment
+## run openvino test
 
+prepare environment
 ```
-conda create -n cpu_test python=3.10
+conda create -y -n vino_test python=3.10
+conda activate vino_test
 pip install -r requirements.txt
 ```
 
-## onnx export
+run openvino performance test
 
 ```
-optimum-cli export onnx --model runwayml/stable-diffusion-v1-5 sd_v15_onnx/
+python script/openvino_test.py
 ```
